@@ -26,7 +26,7 @@ function TopBar(props: ITopBar) {
     <Row>
       <Logo {...props} />
       <Spacer width={8} />
-      <LinkText href="/">
+      <LinkText href="/linky">
         <StyledText
           size={24}
           weight={600}

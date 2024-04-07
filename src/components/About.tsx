@@ -6,7 +6,7 @@ import StyledText from "./common/StyledText";
 import TopBar from "./TopBar";
 import Scroller from "./Scroller";
 import IconButton from "./common/IconButton";
-import { HiArrowRight, HiMiniPlay } from "react-icons/hi2";
+import { HiMiniPlay } from "react-icons/hi2";
 import { useNavigate } from "react-router-dom";
 import { Footer, LinkText, PageWrapper } from "./common/common";
 import FormattedWords from "./FormattedWords";
@@ -69,7 +69,7 @@ function About() {
           <p>
             <StyledText>happy </StyledText>
             <StyledText color={Color.YELLOW}>
-              <LinkText href="/">linking!</LinkText>
+              <LinkText href="/linky">linking!</LinkText>
             </StyledText>
           </p>
           <Spacer height={24} />

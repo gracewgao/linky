@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import Game from './components/Game';
 import { createGlobalStyle } from 'styled-components';
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import About from './components/About';
 
 const GlobalStyle = createGlobalStyle`
@@ -17,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/linky">
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Game />} />
