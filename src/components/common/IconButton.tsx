@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Color } from "../../constants/constants";
-import Spacer from "../Spacer";
+import Spacer from "./Spacer";
 import { Row } from "./Row";
 import StyledText from "./StyledText";
 
@@ -32,9 +32,8 @@ function IconButton(props: IIconButton) {
         <props.icon size={props.size ?? 24} />
         {props.label ? (
           <>
-            <Spacer width={8} />
+            <Spacer width={8} isFixed />
             <StyledText
-              size={props.size ? props.size - 6 : 18}
               color={"inherit"}
             >
               {props.label}

@@ -12,6 +12,14 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+
+  html {
+    font-size: clamp(12px, 2vw, 18px);
+  }
+  
+  body {
+    font-size: 1rem;
+  }
 `;
 
 function App() {

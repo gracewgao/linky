@@ -23,7 +23,7 @@ export const LinkText = styled.a`
 export const Footer = styled.div`
   width: 100%;
   position: absolute;
-  bottom: 48px;
+  bottom: 2rem;
 `;
 
 export const Container = styled.div`
@@ -31,7 +31,7 @@ export const Container = styled.div`
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
-  padding: 24px;
+  padding: 2rem;
 `;
 
 export const PageWrapper = styled.div`
