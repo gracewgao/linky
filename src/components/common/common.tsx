@@ -37,7 +37,7 @@ export const Container = styled.div`
 export const PageWrapper = styled.div`
   background-color: ${Color.BACKGROUND};
   color: white;
-  height: 100vh;
+  height: 100%;
   width: 100%;
   position: fixed;
   top: 0;
