@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Color } from "../constants/constants";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Row } from "./common/Row";
-import Spacer from "./Spacer";
+import Spacer from "./common/Spacer";
 
 interface IOption {
   option: string;
@@ -14,6 +14,7 @@ interface ISetting {
   label: string;
   options: IOption[];
   defaultChoice: number;
+  isMobile: boolean;
   setOptionValue: Dispatch<SetStateAction<any>>;
 }
 
@@ -47,8 +48,12 @@ function Setting(props: ISetting) {
 
   return (
     <SettingRow>
-      {props.label}
-      <Spacer width={8} />
+      {props.isMobile ? null : (
+        <>
+          {props.label}
+          <Spacer width={8} isFixed />
+        </>
+      )}
       <Chip {...props} onClick={cycleChoice}>
         {props.options[choice].option}
       </Chip>

@@ -2,7 +2,7 @@ import { BiLogoGithub } from "react-icons/bi";
 import { HiBookOpen } from "react-icons/hi2";
 import IconButton from "./common/IconButton";
 import { Row } from "./common/Row";
-import Spacer from "./Spacer";
+import Spacer from "./common/Spacer";
 import StyledText from "./common/StyledText";
 import { useNavigate } from "react-router-dom";
 import { LinkText } from "./common/common";
@@ -25,17 +25,17 @@ function TopBar(props: ITopBar) {
   return (
     <Row>
       <Logo {...props} />
-      <Spacer width={8} />
+      <Spacer width={8} isFixed />
       <LinkText href="/linky">
         <StyledText
-          size={24}
+          size={1.5}
           weight={600}
           color={props.homepage ? Color.PRIMARY_TEXT : Color.SECONDARY_TEXT}
         >
           linky
         </StyledText>
       </LinkText>
-      <Spacer width={16} />
+      <Spacer width={1} />
       <IconButton
         icon={HiBookOpen}
         color={props.homepage ? Color.SECONDARY_TEXT : Color.YELLOW}

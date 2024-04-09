@@ -9,7 +9,7 @@ import {
   TAB_OPTIONS,
   TIME_OPTIONS,
 } from "../constants/constants";
-import Spacer from "./Spacer";
+import Spacer from "./common/Spacer";
 import Timer from "./Timer";
 import { HiMiniArrowPath } from "react-icons/hi2";
 import IconButton from "./common/IconButton";
@@ -28,6 +28,7 @@ import {
 } from "../constants/chunks";
 import { Container, Footer, IChunk, IWord, PageWrapper } from "./common/common";
 import FormattedWords from "./FormattedWords";
+import { useWindowSize } from "./common/windowSize";
 
 const WordInput = styled.input`
   background-color: transparent;
@@ -38,7 +39,7 @@ const WordInput = styled.input`
   margin: 0;
   width: 100%;
   outline: none;
-  font-size: 100px;
+  font-size: 5.5rem;
   font-weight: 800;
 `;
 
@@ -53,7 +54,7 @@ const GhostWord = styled.div`
 `;
 
 const WordRow = styled(Row)`
-  font-size: 100px;
+  font-size: 5.5rem;
   font-weight: 800;
   position: relative;
 `;
@@ -61,20 +62,20 @@ const WordRow = styled(Row)`
 const Score = styled.div`
   color: ${Color.SECONDARY_TEXT};
   width: 100%;
-  font-size: 60px;
+  font-size: 3.5rem;
   font-weight: 600;
   text-align: right;
 `;
 
 const ErrorMsg = styled.p`
   color: ${Color.RED};
-  min-height: 30px;
+  min-height: 1.5rem;
 `;
 
 const InfoMsg = styled.p`
   color: ${Color.SECONDARY_TEXT};
-  font-size: 24px;
-  min-height: 30px;
+  font-size: 1.25rem;
+  min-height: 1.25rem;
 `;
 
 const ChunkHistoryBlock = styled.div`
@@ -90,12 +91,12 @@ const ActiveChunkRow = styled(Row)`
 `;
 
 const ActiveChunk = styled.button<IChunk>`
-  padding: 10px 20px;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
   color: ${(props) => props.color ?? "white"};
   background-color: ${Color.DARK_GREY};
   font-weight: 600;
-  font-size: 24px;
+  font-size: 1.5rem;
   cursor: pointer;
   border: none;
 
@@ -121,6 +122,7 @@ function Game() {
   const [tabSetting, setTabSetting] = useState(true);
 
   const { words, isLoading, wordExists } = useWordChecker(languageSetting);
+  const { width, height, isMobile } = useWindowSize();
 
   useEffect(() => {
     resetGame();
@@ -243,34 +245,34 @@ function Game() {
   return (
     <PageWrapper>
       <Timer time={timeSetting} started={started} setEnded={setEnded} />
-      <Spacer height={24} />
+      <Spacer height={1} />
       <Container>
         <TopBar homepage />
-        <Spacer height={24} />
+        <Spacer height={2.5} />
         {ended ? (
           <>
             <Row center>
-              <StyledText color={Color.PRIMARY_TEXT} size={120} weight={800}>
+              <StyledText color={Color.PRIMARY_TEXT} size={7} weight={800}>
                 {score}
               </StyledText>
             </Row>
             <Row center>
-              <StyledText color={Color.LIGHT_PURPLE} size={48} weight={600}>
+              <StyledText color={Color.LIGHT_PURPLE} size={2.5} weight={600}>
                 {totalChunks}
               </StyledText>
-              <StyledText size={48} weight={600}>
+              <StyledText size={2.5} weight={600}>
                 chunk{totalChunks != 1 ? "s" : ""}
               </StyledText>
             </Row>
             <Row center>
-              <StyledText color={Color.LIGHT_BLUE} size={48} weight={600}>
+              <StyledText color={Color.LIGHT_BLUE} size={2.5} weight={600}>
                 {wordList.length}
               </StyledText>
-              <StyledText size={48} weight={600}>
+              <StyledText size={2.5} weight={600}>
                 word{wordList.length != 1 ? "s" : ""}
               </StyledText>
             </Row>
-            <Spacer height={48} />
+            <Spacer height={2} />
             <Row center>
               <IconButton
                 icon={HiMiniArrowPath}
@@ -279,12 +281,12 @@ function Game() {
                 label={"play again"}
               />
             </Row>
-            <Spacer height={24} />
+            <Spacer height={2} />
           </>
         ) : (
           <>
             <ActiveChunkRow>
-              {activeChunks.map((chunk) => (
+              {activeChunks.map((chunk, i) => (
                 <>
                   <ActiveChunk
                     {...chunk}
@@ -292,12 +294,12 @@ function Game() {
                   >
                     {chunk.chunk}
                   </ActiveChunk>
-                  <Spacer width={24} />
+                  {i != 2 ? <Spacer width={1.25} /> : null}
                 </>
               ))}
               <br />
             </ActiveChunkRow>
-            <Spacer height={48} />
+            <Spacer height={2} />
             <WordRow>
               <GhostWord>{history.slice(0, history.length - 1)}</GhostWord>
               {firstLetter}
@@ -315,18 +317,17 @@ function Game() {
             <ChunkHistoryBlock>
               <FormattedWords wordList={wordList} />
             </ChunkHistoryBlock>
-            <Spacer height={64} />
+            <Spacer height={3} />
           </>
         )}
       </Container>
       <Footer>
-        <Spacer height={8} />
-        {started && !ended ? (
+        <Spacer height={0.25} />
+        {started && !ended && !isMobile ? (
           <Row center>
             <IconButton
               icon={HiMiniArrowPath}
               onClick={resetGame}
-              size={24}
               label={"restart game"}
             />
           </Row>
@@ -334,7 +335,7 @@ function Game() {
         {ended ? (
           <>
             <Scroller wordList={wordList} scrollChunk={FormattedWords} />
-            <Spacer height={36} />
+            <Spacer height={1.5} />
           </>
         ) : (
           <Container>
@@ -348,23 +349,28 @@ function Game() {
             color={Color.PINK}
             defaultChoice={1}
             setOptionValue={setTimeSetting}
+            isMobile={isMobile}
           />
-          <Spacer width={16} />
+          <Spacer width={1.25} />
           <Setting
             options={LANGUAGE_OPTIONS}
             label="language"
             color={Color.GREEN}
             defaultChoice={0}
             setOptionValue={setLanguageSetting}
+            isMobile={isMobile}
           />
-          <Spacer width={16} />
-          <Setting
-            options={TAB_OPTIONS}
-            label="tab to restart"
-            color={Color.ORANGE}
-            defaultChoice={0}
-            setOptionValue={setTabSetting}
-          />
+          <Spacer width={1.25} />
+          {isMobile ? null : (
+            <Setting
+              options={TAB_OPTIONS}
+              label="tab to restart"
+              color={Color.ORANGE}
+              defaultChoice={0}
+              setOptionValue={setTabSetting}
+              isMobile={isMobile}
+            />
+          )}
         </Row>
       </Footer>
     </PageWrapper>

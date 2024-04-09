@@ -6,12 +6,16 @@ interface IStyledText {
   size?: number;
   color?: string;
   weight?: number;
+  isFixed?: boolean;
   children: ReactNode;
 }
 
 const Text = styled.span<IStyledText>`
   color: ${(props) => props.color ?? Color.PRIMARY_TEXT};
-  font-size: ${(props) => props.size ?? 18}px;
+  font-size: ${(props) =>
+    props.size
+      ? `${props.size}${props.isFixed ? "px" : "rem"}`
+      : `clamp(14px, 2vw, 18px)`};
   font-weight: ${(props) => props.weight ?? 400};
 `;
 

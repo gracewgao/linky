@@ -9,7 +9,7 @@ export interface IFormattedWords {
 
 // todo: fix the hover to highlight words?
 const FormattedChunk = styled.span<IChunk>`
-  font-size: 36px;
+  font-size: 2rem;
   color: ${(props) => props.color};
 
   &:hover {
