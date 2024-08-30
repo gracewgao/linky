@@ -1,6 +1,6 @@
 # linky
 
-a word connection game that blends in a bit of vocabulary and strategy...
+a word connection game
 
 [play linky](https://gracewgao.me/linky)
 

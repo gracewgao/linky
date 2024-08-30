@@ -39,11 +39,10 @@ function About() {
         <Spacer height={1} />
         <AboutText>
           <p>
-            <StyledText>hey there -- you’ve found </StyledText>
+            <StyledText>hey! you’ve found </StyledText>
             <StyledText color={Color.PINK}>linky</StyledText>
             <StyledText>
-              , a word connection game that blends in a bit of vocabulary and
-              strategy.
+              , a colorful word connection game.
             </StyledText>
           </p>
           <p>

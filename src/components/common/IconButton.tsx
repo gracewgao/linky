@@ -19,6 +19,7 @@ const StyledButton = styled.button<IIconButton>`
   background: none;
   cursor: pointer;
   outline: none;
+  font-family: inherit;
 
   :hover {
     color: ${Color.PRIMARY_TEXT};

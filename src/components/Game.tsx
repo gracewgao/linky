@@ -41,6 +41,7 @@ const WordInput = styled.input`
   outline: none;
   font-size: 5.5rem;
   font-weight: 800;
+  font-family: inherit;
 `;
 
 // todo: absolute width is kinda hacky
@@ -239,7 +240,7 @@ function Game() {
 
   const history = wordList
     .slice(-10)
-    .map((prevWord) => prevWord.fullWord)
+    .map((prevWord) => prevWord.fullWord.slice(0, prevWord.fullWord.length - 1))
     .join("");
 
   return (
@@ -301,7 +302,7 @@ function Game() {
             </ActiveChunkRow>
             <Spacer height={2} />
             <WordRow>
-              <GhostWord>{history.slice(0, history.length - 1)}</GhostWord>
+              <GhostWord>{history}</GhostWord>
               {firstLetter}
               <form onSubmit={handleSubmit}>
                 <WordInput
